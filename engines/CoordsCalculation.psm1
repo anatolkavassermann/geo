@@ -35,6 +35,9 @@ function CalculateCoords {
         $true { 
             [System.String]$Answer = "$Latitude $Longtitude $InitAngle $DistanceToGo" | .\engines\shp\dir.exe
             [System.String[]]$StringCoords =  $Answer.Split([System.Text.Encoding]::ASCII.GetString(9))
+            for ($i = 0; $i -lt $StringCoords.Count; $i++) {
+                $StringCoords.Replace('.',',')
+            }
          }
     }
     #[System.String]$Answer = "$Latitude $Longtitude $InitAngle $DistanceToGo" | .\engines\shp\dir.exe
