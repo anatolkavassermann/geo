@@ -74,19 +74,19 @@ function Main () {
              }
         }
     }
-    
+    [System.Random]$rand = [System.Random]::new()
     for ($PatternIndex = 0; $PatternIndex -lt $CompleteConfiguration.Count; $PatternIndex++) {
         for ($PatternCount = 0; $PatternCount -lt $CompleteConfiguration[$PatternIndex.ToString()].Count; $PatternCount++) {
             [Plane]$Plane = CreatePlane -PatternConfiguration $CompleteConfiguration[$PatternIndex.ToString()].PatternConfiguration -WorldCoords $WorldsCoords
             $PlaneIsOnMap = $false
             Write-Host -Object ("Generating coords for " + $Plane.ObjID) -ForegroundColor Green
-            $Step = $InitialTime
+            $Step = $rand.Next($InitialTime,($InitialTime+5))
             $CurrStep = 0
             while ($Plane.CanFly) {
                 $CurrStep++
                 switch ($PlaneIsOnMap) {
                     $false {
-                        [System.Int64]$Milisecond = $Plane.RefreshRate * $Step
+                        [System.Int64]$Milisecond = $Step
                         [System.String]$OutputResult = [System.String]::Join(":",$Plane.Coords)
                         $OutputResult = "s" + $Milisecond.ToString() + "t" + $OutputResult + ";" + $Plane.CurHeight.ToString() + ";" + $Plane.ObjID + ";" + $Plane.CurAngle.ToString()
                         Add-Content -Path $OutputConfigFilepath -Value $OutputResult
@@ -97,7 +97,7 @@ function Main () {
                 switch ($Plane.CanFly) {
                     $true {
                         $Step ++
-                        [System.Int64]$Milisecond = $Plane.RefreshRate * $Step
+                        [System.Int64]$Milisecond = $Plane.RefreshRate + $Milisecond
                         [System.String]$OutputResult = [System.String]::Join(":",$Plane.Coords)
                         $OutputResult = "s" + $Milisecond.ToString() + "t" + $OutputResult + ";" + $Plane.CurHeight.ToString() + ";" + $Plane.ObjID + ";" + $Plane.CurAngle.ToString()
                         Add-Content -Path $OutputConfigFilepath -Value $OutputResult
