@@ -1,6 +1,6 @@
 # geo
 
-Версия powershell для Windows: 5.1.18362.628 и выше
+Версия powershell для Windows: 5.1.18362.628 и выше,
 Версия powershell для Unix: 7.0.0-rc.2 и выше
 
 Для запуска:
