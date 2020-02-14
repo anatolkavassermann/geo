@@ -84,7 +84,7 @@ function Main () {
             $CurrStep = -1
             while ($Plane.CanFly) {
                 $CurrStep++
-                if ($CurrStep -ge 1) {
+                if ($CurrStep -ge 1000) {
                     break;
                 }
                 Write-Host $CurrStep
