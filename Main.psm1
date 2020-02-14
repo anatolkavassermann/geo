@@ -81,9 +81,13 @@ function Main () {
             $PlaneIsOnMap = $false
             Write-Host -Object ("Generating coords for " + $Plane.ObjID) -ForegroundColor Green
             $Step = $rand.Next($InitialTime,($InitialTime+5000))
-            $CurrStep = 0
+            $CurrStep = -1
             while ($Plane.CanFly) {
                 $CurrStep++
+                if ($CurrStep -ge 1) {
+                    break;
+                }
+                Write-Host $CurrStep
                 switch ($PlaneIsOnMap) {
                     $false {
                         [System.Int64]$Milisecond = $Step
@@ -103,11 +107,6 @@ function Main () {
                         Add-Content -Path $OutputConfigFilepath -Value $OutputResult
                      }
                     $false {
-                        break
-                     }
-                }
-                switch ($CurrStep -ge 1000) {
-                    $true {
                         break
                      }
                 }
@@ -203,3 +202,4 @@ Running $ModuleName
 "
     Write-Host -Object $AutherData -ForegroundColor Green
 }
+Main -InitialTime 0
