@@ -80,7 +80,7 @@ function Main () {
             [Plane]$Plane = CreatePlane -PatternConfiguration $CompleteConfiguration[$PatternIndex.ToString()].PatternConfiguration -WorldCoords $WorldsCoords
             $PlaneIsOnMap = $false
             Write-Host -Object ("Generating coords for " + $Plane.ObjID) -ForegroundColor Green
-            $Step = $rand.Next($InitialTime,($InitialTime+5))
+            $Step = $rand.Next($InitialTime,($InitialTime+5000))
             $CurrStep = 0
             while ($Plane.CanFly) {
                 $CurrStep++
