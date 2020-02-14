@@ -87,7 +87,6 @@ function Main () {
                 if ($CurrStep -ge 1000) {
                     break;
                 }
-                Write-Host $CurrStep
                 switch ($PlaneIsOnMap) {
                     $false {
                         [System.Int64]$Milisecond = $Step
