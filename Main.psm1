@@ -115,7 +115,6 @@ function Main () {
         }
     }
     Get-Content $OutputConfigFilepath | Sort-Object -Property {$_.Substring(1,$_.IndexOf("t")).Length;"$_[0..9]"} | Set-Content $OutputConfigFilepath
-    WriteToExcel -OutputExcelFile $OutputExcelConfigFilepath -OutputConfigFilepath $OutputConfigFilepath
 }
 
 function IfNull () {
