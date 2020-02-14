@@ -202,4 +202,3 @@ Running $ModuleName
 "
     Write-Host -Object $AutherData -ForegroundColor Green
 }
-Main -InitialTime 0
